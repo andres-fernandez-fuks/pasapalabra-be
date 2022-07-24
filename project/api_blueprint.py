@@ -3,6 +3,10 @@ from process import *
 
 data_blueprint = Blueprint("data_blueprint", __name__)
 
+@data_blueprint.route("/", methods=["GET"])
+def get_health():
+    return "Health ok"
+
 @data_blueprint.route("/scores", methods=["GET"])
 def get_data_from_file():
     data = get_data()

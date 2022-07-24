@@ -15,7 +15,6 @@ def add_data(data):
     current_data = get_data()
     current_data.append(data)
     data = sorted(current_data, key=lambda x: (-int(x[1]), int(x[2])))[:10]
-    import pdb; pdb.set_trace()
     with open(FILE_NAME, "w") as f:
         for line in data:
             f.write(",".join(line) + "\n")
