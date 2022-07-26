@@ -1,6 +1,4 @@
-from __future__ import print_function
-
-import os.path
+import io
 
 FILE_NAME = 'scores.csv'
 
@@ -18,3 +16,8 @@ def add_data(data):
     with open(FILE_NAME, "w") as f:
         for line in data:
             f.write(",".join(line) + "\n")
+
+def update_log(log_data):
+    with io.open("log.txt", "a", encoding="utf-8") as f:
+        for key in log_data:
+            f.write(f'{key}: {log_data[key]}' + "\n")
