@@ -56,7 +56,7 @@ def update_player_score_if_higher(new_score):
     for i, line in enumerate(prev_data):
         if line[0] == new_score[0]:
             if new_score_is_higher(new_score, line):
-                prev_data[i] = (new_score[1], new_score[1], new_score[2], new_score[3])
+                prev_data[i] = (new_score[0], new_score[1], new_score[2], new_score[3])
                 replace_data(prev_data)
             return
 
