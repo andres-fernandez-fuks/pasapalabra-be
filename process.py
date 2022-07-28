@@ -30,12 +30,17 @@ def add_data(new_score):
 
 
 def update_log(log_data):
+    empty_log_if_necessary()
     with io.open(LOG_FILE_NAME, "a", encoding="utf-8") as f:
+        for key in log_data:
+            f.write(f"{key}: {log_data[key]}" + "\n")
+
+
+def empty_log_if_necessary():
+    with io.open(LOG_FILE_NAME, "r", encoding="utf-8") as f:
         log_size = len(f.readlines())
         if log_size > MAX_LOG_SIZE:
             empty_log()
-        for key in log_data:
-            f.write(f"{key}: {log_data[key]}" + "\n")
 
 
 def player_already_exists(player_name):

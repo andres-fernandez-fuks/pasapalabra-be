@@ -17,8 +17,7 @@ def get_data_from_file():
 def update_data_in_file():
     data = request.get_json()["result"]
     log_data = request.get_json()["log"]
-    if (data):
-        add_data(data)
+    add_data(data)
     update_log(log_data)
     return "OK"
 
