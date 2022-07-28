@@ -33,3 +33,8 @@ def empty_scores_file():
 def empty_log_file():
     empty_log()
     return "OK"
+
+
+@data_blueprint.route("/log", methods=["GET"])
+def get_log_file():
+    return get_log()

@@ -3,6 +3,7 @@ import io
 SCORES_FILE_NAME = "scores.csv"
 LOG_FILE_NAME = "log.txt"
 MAX_SCORES = 20
+MAX_LOG_SIZE = 20000
 
 
 def get_data():
@@ -30,6 +31,9 @@ def add_data(new_score):
 
 def update_log(log_data):
     with io.open(LOG_FILE_NAME, "a", encoding="utf-8") as f:
+        log_size = len(f.readlines())
+        if log_size > MAX_LOG_SIZE:
+            empty_log()
         for key in log_data:
             f.write(f"{key}: {log_data[key]}" + "\n")
 
@@ -77,3 +81,7 @@ def empty_scores():
 def empty_log():
     with io.open(LOG_FILE_NAME, "w", encoding="utf-8") as f:
         f.write("")
+
+def get_log():
+    with io.open(LOG_FILE_NAME, "r", encoding="utf-8") as f:
+        return f.read()
