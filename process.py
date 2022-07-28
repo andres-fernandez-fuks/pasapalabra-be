@@ -68,3 +68,12 @@ def replace_data(new_data):
     with io.open(SCORES_FILE_NAME, "w", encoding="utf-8") as f:
         for line in new_data:
             f.write(",".join(line) + "\n")
+
+
+def empty_scores():
+    with io.open(SCORES_FILE_NAME, "w", encoding="utf-8") as f:
+        f.write("")
+
+def empty_log():
+    with io.open(LOG_FILE_NAME, "w", encoding="utf-8") as f:
+        f.write("")

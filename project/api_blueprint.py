@@ -21,3 +21,15 @@ def update_data_in_file():
         add_data(data)
     update_log(log_data)
     return "OK"
+
+
+@data_blueprint.route("/empty-scores", methods=["POST"])
+def empty_scores_file():
+    empty_scores()
+    return "OK"
+
+
+@data_blueprint.route("/empty-log", methods=["POST"])
+def empty_log_file():
+    empty_log()
+    return "OK"
