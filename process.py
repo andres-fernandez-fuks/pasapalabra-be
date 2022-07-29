@@ -8,7 +8,7 @@ MAX_LOG_SIZE = 20000
 
 def get_data():
     data = []
-    with open(SCORES_FILE_NAME, "r") as f:
+    with io.open(SCORES_FILE_NAME, "r", encoding="utf-8") as f:
         for line in f:
             data.append(line.strip().split(","))
     return data
