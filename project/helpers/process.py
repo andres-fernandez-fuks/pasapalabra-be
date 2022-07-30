@@ -4,19 +4,6 @@ from project.models.score import Score
 from project import db
 from flask import jsonify
 
-SCORES_FILE_NAME = "scores.csv"
-LOG_FILE_NAME = "log.txt"
-MAX_SCORES = 20
-MAX_LOG_SIZE = 20000
-
-
-def get_data():
-    data = []
-    with open(SCORES_FILE_NAME, "r") as f:
-        for line in f:
-            data.append(line.strip().split(","))
-    return data
-
 
 def add_score(new_score):
     score = Score(
@@ -38,11 +25,11 @@ def add_log(log_data):
 
 
 def empty_scores():
-    db.engine.execute('''TRUNCATE TABLE scores''')
+    db.engine.execute("""TRUNCATE TABLE scores""")
 
 
 def empty_log():
-    db.engine.execute('''TRUNCATE TABLE logs''')
+    db.engine.execute("""TRUNCATE TABLE logs""")
 
 
 def get_logs():
@@ -73,4 +60,3 @@ def get_scores():
             ]
         }
     )
-    return sorted_scores
