@@ -18,9 +18,9 @@ def add_score(new_score):
 
 
 def add_log(log_data):
-    log_string = ''
+    log_string = ""
     for key in log_data[1]:
-        if key=="playerName":
+        if key == "playerName":
             continue
         log_string += f"{key}: {log_data[1][key]}\n"
     log = Log(user_name=log_data[0], log_message=log_string)
@@ -53,15 +53,13 @@ def get_scores():
         key=lambda x: (-x.correct_answers, x.incorrect_answers, -x.remaining_time),
     )
     return jsonify(
-        {
-            "data": [
-                [
-                    score.user_name,
-                    score.correct_answers,
-                    score.incorrect_answers,
-                    score.remaining_time,
-                ]
-                for score in sorted_scores[:20]
+        [
+            [
+                score.user_name,
+                score.correct_answers,
+                score.incorrect_answers,
+                score.remaining_time,
             ]
-        }
+            for score in sorted_scores[:20]
+        ]
     )
