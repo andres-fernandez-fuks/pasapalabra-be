@@ -18,7 +18,12 @@ def add_score(new_score):
 
 
 def add_log(log_data):
-    log = Log(user_name=log_data[0], log_message=log_data[1])
+    log_string = ''
+    for key in log_data[1]:
+        if key=="playerName":
+            continue
+        log_string += f"{key}: {log_data[1][key]}\n"
+    log = Log(user_name=log_data[0], log_message=log_string)
     db.session.add(log)
     db.session.commit()
     return log
@@ -36,7 +41,7 @@ def get_logs():
     logs = Log.query.all()[:20]
     log_info = ""
     for log in logs:
-        log_info += f"{log.user_name}: {log.log_message}"
+        log_info += f"{log.user_name}: {log.log_message}\n"
 
     return log_info
 

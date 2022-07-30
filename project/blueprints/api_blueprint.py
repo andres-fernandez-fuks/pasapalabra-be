@@ -29,7 +29,7 @@ def empty_scores_file():
     return "OK"
 
 
-@data_blueprint.route("/empty-log", methods=["POST"])
+@data_blueprint.route("/empty-logs", methods=["POST"])
 def empty_log_file():
     empty_log()
     return "OK"
