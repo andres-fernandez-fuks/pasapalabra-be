@@ -47,11 +47,18 @@ def get_logs():
 
 
 def get_scores():
-    scores = Score.query.distinct(Score.user_name).all()
+    scores = Score.query.all()
     sorted_scores = sorted(
         scores,
         key=lambda x: (-x.correct_answers, x.incorrect_answers, -x.remaining_time),
     )
+    user_names = set()
+    final_scores = []
+    for score in sorted_scores:
+        if score.user_name not in user_names:
+            user_names.add(score.user_name)
+            final_scores.append(score)
+
     return jsonify(
         [
             [
@@ -60,6 +67,6 @@ def get_scores():
                 score.incorrect_answers,
                 score.remaining_time,
             ]
-            for score in sorted_scores[:20]
+            for score in final_scores[:20]
         ]
     )
