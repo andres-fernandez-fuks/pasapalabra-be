@@ -14,8 +14,8 @@ FLASK_FILE_NAME = "flask.cfg"
 
 
 def create_app(config_filename=None):
-    app = Flask(__name__, instance_relative_config=False)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://postgres:postgres@pasapalabra_db:5432/pasapalabra"
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile(FLASK_FILE_NAME)
     initialize_extensions(app)
     register_blueprints(app)
     cors.init_app(app)
