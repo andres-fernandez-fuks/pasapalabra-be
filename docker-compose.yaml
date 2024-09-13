@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: flask-app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    networks:
+      - pasapalabra
+    volumes:
+      - .:/app
+
+  db:
+    image: postgres:13
+    container_name: flask-db
+    hostname: pasapalabra_db
+    restart: always
+    ports:
+      - "5434:5432"
+    env_file:
+      - .postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pasapalabra
+
+volumes:
+  postgres_data:
+
+networks:
+  pasapalabra:
+    driver: bridge
